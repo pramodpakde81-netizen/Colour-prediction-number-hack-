@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KRISH NUMBERP LZR</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; text-align: center; }
+        .timer-box { background: #fff; padding: 20px; margin: 20px auto; width: 300px; border-radius: 10px; }
+        .btn-container { display: flex; justify-content: center; gap: 10px; margin: 20px; }
+        button { padding: 15px 25px; border: none; border-radius: 5px; color: white; cursor: pointer; font-weight: bold; }
+        .green { background: #4caf50; }
+        .violet { background: #9c27b0; }
+        .red { background: #f44336; }
+        .record-table { width: 90%; margin: auto; border-collapse: collapse; background: white; }
+        .record-table th, td { border: 1px solid #ddd; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="timer-box">
+        <h3>Time Remaining</h3>
+        <h2 id="timer">01:00</h2>
+        <p>Period: <span id="period">20261025001-20261025999</span></p>
+    </div>
+
+    <div class="btn-container">
+        <button class="green" onclick="placeBet('Green')">Join Green</button>
+        <button class="violet" onclick="placeBet('Violet')">Join Violet</button>
+        <button class="red" onclick="placeBet('Red')">Join Red</button>
+<button class="0-9" onclick="placeBet("number result")><\button>
+
+    </div>
+
+    <h3>Recent Records</h3>
+    <table class="record-table">
+        <thead>
+            <tr>
+                <th>Period</th>
+                <th>Price</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody id="record-list">
+            </tbody>
+    </table>
+
+    <script>
+        // Simple 1-minute countdown logic
+        let time = 60;
+        const timerElement = document.getElementById('timer');
+
+        setInterval(() => {
+            let minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            timerElement.innerHTML = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            if (time <= 0) {
+                time = 60; // Reset for next round
+                // In a real app, you'd fetch the result from the server here
+            } else {
+                time--;
+            }
+        }, 1000);
+
+        function placeBet(color) {
+            alert("You selected " + color + ". In a real app, this would open a betting modal.");
+        }
+    </script>
+</body>
+</html>
