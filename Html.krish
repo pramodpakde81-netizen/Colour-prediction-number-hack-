@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Krish Number Lzr</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f172a;
+    color:white;
+    text-align:center;
+}
+
+.header{
+    background:#1e293b;
+    padding:15px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.container{
+    padding:20px;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.timer{
+    font-size:40px;
+    margin:10px 0;
+}
+
+.period{
+    font-size:18px;
+}
+
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.big{
+    background:#22c55e;
+    color:white;
+}
+
+.small{
+    background:#ef4444;
+    color:white;
+}
+
+.result{
+    font-size:32px;
+    margin-top:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:10px;
+    border-bottom:1px solid #334155;
+}
+
+th{
+    background:#334155;
+}
+
+.history{
+    max-height:300px;
+    overflow:auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+Krish Number Lzr 
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="period">
+Period : <span id="period">100001</span>
+</div>
+
+<div class="timer" id="timer">
+60
+</div>
+
+<button onclick="predict()">Predict Result</button>
+
+<div class="result" id="result">
+-
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Prediction History</h3>
+
+<div class="history">
+
+<table>
+
+<thead>
+<tr>
+<th>Period</th>
+<th>Result</th>
+</tr>
+</thead>
+
+<tbody id="history">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let time = 60
+let period = 100001
+
+const timerElement = document.getElementById("timer")
+const periodElement = document.getElementById("period")
+const resultElement = document.getElementById("result")
+const historyElement = document.getElementById("history")
+
+setInterval(()=>{
+
+time--
+
+timerElement.innerText=time
+
+if(time<=0){
+
+time=60
+period++
+
+periodElement.innerText=period
+
+resultElement.innerText="-"
+
+}
+
+},1000)
+
+
+function predict(){
+
+let rand = Math.random()
+
+let result = ""
+
+if(rand<0.5){
+result="SMALL"
+resultElement.style.color="#ef4444"
+}else{
+result="BIG"
+resultElement.style.color="#22c55e"
+}
+
+resultElement.innerText=result
+
+let row = `
+<tr>
+<td>${period}</td>
+<td>${result}</td>
+</tr>
+`
+
+historyElement.innerHTML = row + historyElement.innerHTML
+
+}
+
+</script>
+
+</body>
+</html>
